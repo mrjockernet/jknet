@@ -1,0 +1,75 @@
+#!/bin/bash
+while :; do
+#VARIAVEIS
+Year=`date +%Y`
+Month=`date +%m`
+Day=`date +%d`
+Hour=`date +%H`
+Minute=`date +%M`
+Second=`date +%S`
+data=`date`
+#VARIAVEIS COR
+vermelho="\033[1;31m"
+verde="\033[1;32m"
+amarelo="\033[1;33m"
+#VARIAVEIS COMANDOS
+ls=`lscpu | grep "Model name"`
+#cria loop
+  #limpa a tela
+  clear
+  #iniciando menu
+  echo -e "$verde Abrindo menu, aguarde! "
+  sleep 1
+  #menu
+  echo -e "$vermelho ===============MANAGER MASTER==============="
+  echo -e "
+  |========================================|
+  | $amarelo CPU $ls $vermelho  |
+  | $amarelo HORA:                     $Hour-$Minute-$Second $vermelho   |
+  | $amarelo DATA:                    $Year-$Month-$Day $vermelho  |
+  |========================================|"
+  echo -e "$vermelho ===============@MRJOCKERNET================= $amarelo"
+  echo
+  echo '1) LIMPAR MEMORIA'
+  echo '2) INFO SERVIDOR'
+  echo '3) VERFICAR PORTAS ABERTAS'
+  echo '4) ACODEX-Server'
+  echo '5) SAIR'
+
+  #LE SOMENTE O PRIMEIRO CARACTERE
+  read -n1 -p 'Opção: ' opc
+  echo
+  sleep 1
+
+  # verifica o valor armazenado em opc
+  # executa o bloco referente
+  case $opc in
+      1) echo -e "$verde iniciando limpeza v10"
+      sleep 2
+      echo -e "$verde Exibindo consumo da memória RAM @BY JOCKER"
+      free -h
+      sleep 3
+      echo -e "Limpando cache da memória RAM"
+      apt update -y && apt upgrade -y && apt autoremove -y && apt -f install -y && apt autoclean -y
+      echo 3 > /proc/sys/vm/drop_caches
+      systcl -w vm.drop_caches=3
+      sleep 3
+      echo -e "$amarelo limpeza do cache da memória RAM efetuada com sucesso"
+      sleep 1
+      echo -e "$amarelo exibindo o consumo da memória RAM"
+      sleep 1
+      echo -e "$verde FOI ATUALIZADO OS PACOTES E OTIMIZADO A MEMORIA RAM"
+      free -h
+      sleep 1;;
+      2) lscpu;;
+      3) netstat -tulpn;;
+      4) acodeX-server
+      5) break;; # interrompe o loop, e, finaliza a exibicao
+      *) echo -e "$vermelho OPÇÃO INVALIDA !!"
+  esac
+
+  read -p '$verde Pressione qualquer tecla para voltar... $vermelho'
+done
+
+echo -e "$verde Saindo..."
+sleep 2
