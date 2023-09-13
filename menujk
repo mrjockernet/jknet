@@ -33,7 +33,7 @@ ls=`lscpu | grep "Model name"`
   echo '1) LIMPAR MEMORIA'
   echo '2) INFO SERVIDOR'
   echo '3) VERFICAR PORTAS ABERTAS'
-  echo '4) ACODEX-Server'
+  echo '4) ACODEX-SERVER'
   echo '5) SAIR'
 
   #LE SOMENTE O PRIMEIRO CARACTERE
@@ -63,7 +63,7 @@ ls=`lscpu | grep "Model name"`
       sleep 1;;
       2) lscpu;;
       3) netstat -tulpn;;
-      4) acodeX-server
+      4) acodeX-server;;
       5) break;; # interrompe o loop, e, finaliza a exibicao
       *) echo -e "$vermelho OPÇÃO INVALIDA !!"
   esac
