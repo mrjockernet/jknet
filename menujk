@@ -20,6 +20,7 @@ ls=`lscpu | grep "Model name"`
   #iniciando menu
   echo -e "$verde Abrindo menu, aguarde! "
   sleep 1
+  clear
   #menu
   echo -e "$vermelho ===============MANAGER MASTER==============="
   echo -e "
